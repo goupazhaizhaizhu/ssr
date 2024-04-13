@@ -1,4 +1,7 @@
 #!/bin/bash
+
+source ~/.nvm/nvm.sh
+
 set -ex
 
 startTime=`date +%s`
