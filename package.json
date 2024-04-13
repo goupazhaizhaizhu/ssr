@@ -1,0 +1,22 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "// test1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goupazhaizhaizhu/ssr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goupazhaizhaizhu/ssr/issues"
+  },
+  "homepage": "https://github.com/goupazhaizhaizhu/ssr#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
