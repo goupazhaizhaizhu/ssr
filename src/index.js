@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   host: '172.23.215.76', // 替换为你的阿里云服务器的IP地址
   user: 'root', // 替换为你的数据库用户名
   password: 'Goupazhai<123', // 替换为你的数据库密码
-  database: 'mysql', // 替换为你的数据库名
+  database: 'performance_schema', // 替换为你的数据库名
   port: 3306 // MySQL的默认端口是3306
 });
  
