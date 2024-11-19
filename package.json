@@ -4,7 +4,9 @@
   "description": "// test1",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "dev": "webpack --config ./webpack/webpack.dev.config.js",
+    "babel-node": "babel  src -d dist/src",
+    "start": "npm run dev && npm run babel-node && node ./app.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,16 @@
   },
   "homepage": "https://github.com/goupazhaizhaizhu/ssr#readme",
   "dependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "babel-loader": "^9.2.1",
     "express": "^4.19.2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
   }
 }
