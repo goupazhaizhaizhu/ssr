@@ -14,6 +14,6 @@ app.use(express.static(
 // 首页
 app.use("/" ,reactSsr);
 
-app.listen(9001,  function () {
+app.listen(8081,  function () {
     console.log("服务启动完毕");
 });
