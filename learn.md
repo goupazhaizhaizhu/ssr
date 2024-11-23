@@ -30,4 +30,10 @@
 
 ### Routes组件、StaticRouter组件和BrowserRouter组件作用
 
-### props.staticContext的使用
+### 数据脱水（用一个display的textarea传客户端）
+
+### 数据注水（在hydrate前获取textarea数据，通过props传递给组件）
+
+### 服务端的数据也可以通过props的方式传递给组件
+
+### 补漏：组件的继承，类组件的静态方法
