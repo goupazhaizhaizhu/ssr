@@ -1,6 +1,6 @@
 # learn
 
-## 4.14
+## 2024.4.14
 
 ### linux文件的操作是有权限管控的
 
@@ -21,3 +21,13 @@
 1. 启动服务时ip指定0.0.0.0，访问时用公网IP。
 2. 也可以使用私网id，用于内部调用
 3. 公网port需要暴露出来
+
+## 2024.11.23
+
+### node端如何使用es module
+
+### hydrate和renderToString
+
+### Routes组件、StaticRouter组件和BrowserRouter组件作用
+
+### props.staticContext的使用

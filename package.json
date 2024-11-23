@@ -4,9 +4,11 @@
   "description": "// test1",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config ./webpack/webpack.dev.config.js",
+    "webpack-client": "webpack --config ./webpack/webpack.dev.config.js",
     "babel-node": "babel  src -d dist/src",
-    "start": "npm run dev && npm run babel-node && node ./app.js"
+    "start": "npm run webpack-client && npm run babel-node && node ./app.js",
+    "build-dev": "webpack --config ./webpack/webpack.dev.config.js --watch & babel --watch src -d dist/src",
+    "dev": "nodemon ./app.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,12 @@
     "mysql": "^2.18.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router": "^7.0.1",
+    "react-router-dom": "^7.0.1",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }

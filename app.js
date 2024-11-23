@@ -11,8 +11,12 @@ app.use(express.static(
     path.join(__dirname, './dist/static')
 ));
 
-// 首页
-app.use("/" ,reactSsr);
+app.get("/favicon.ico", (req, res) => {
+  res.status(404).send("Favicon not found");
+});
+
+// 前端页面
+app.get("*", reactSsr);
 
 app.listen(8081,  function () {
     console.log("服务启动完毕");
