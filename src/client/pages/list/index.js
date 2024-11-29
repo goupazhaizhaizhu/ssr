@@ -2,6 +2,7 @@
 //list 组件
 
 import React from "react";
+import { Helmet } from "react-helmet";
 
 import { data } from "./data";
 
@@ -13,6 +14,12 @@ export default class List extends React.Component {
     this.state = initialData;
   }
 
+  static TDK = {
+    title: "listTitle",
+    description: "listDescription",
+    keywords: "listKey",
+  };
+
   static async getInitialProps() {
     //模拟数据请求方法
     const fetchData = () => {
@@ -21,6 +28,7 @@ export default class List extends React.Component {
           resolve({
             code: 0,
             data: data,
+            tdk: List.TDK,
           });
         }, 100);
       });
@@ -31,14 +39,14 @@ export default class List extends React.Component {
     return res;
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     if (!this.state.fetchData) {
       List.getInitialProps().then((res) => {
         this.setState({
           data: res.data || [],
+          tdk: List.TDK,
         });
       });
-      
     }
   }
 
@@ -47,10 +55,15 @@ export default class List extends React.Component {
   }
 
   render() {
-    const { code, data } = this.state;
+    const { tdk = {}, data } = this.state;
 
     return (
       <div>
+        <Helmet>
+          <title>{tdk.title}</title>
+          <meta name="description" content={tdk.description} />
+          <meta name="keywords" content={tdk.keywords} />
+        </Helmet>
         <h1 onClick={this.handlerClick}>我是列表</h1>
         {data &&
           data.map((item, index) => {

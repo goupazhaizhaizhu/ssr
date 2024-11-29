@@ -2,6 +2,7 @@
 //index 组件
 
 import React from 'react';
+import { Helmet } from "react-helmet";
 
 //组件
 export default class Index extends React.Component {
@@ -11,6 +12,12 @@ export default class Index extends React.Component {
     this.state = initialData;
   }
 
+  static TDK = {
+    title: "indexTitle",
+    description: "indexDescription",
+    keywords: "indexKey",
+  };
+
   static async getInitialProps() {
     //模拟数据请求方法
     const fetchData = () => {
@@ -19,6 +26,7 @@ export default class Index extends React.Component {
           resolve({
             code: 0,
             data: "tempData",
+            tdk: Index.TDK,
           });
         }, 100);
       });
@@ -33,17 +41,28 @@ export default class Index extends React.Component {
     if (!this.state.fetchData) {
       Index.getInitialProps().then((res) => {
         this.setState({
-          data: res.data || [],
+          data: res.data || "暂无数据",
+          tdk: Index.TDK,
         });
       });
     }
   }
-    
+
   handlerClick() {
     alert("一起来玩 react ssr 呀。");
   }
 
   render() {
-    return <h1 onClick={this.handlerClick}>click here!</h1>;
+    const { tdk = {} } = this.state;
+    return (
+      <div>
+        <Helmet>
+          <title>{tdk.title}</title>
+          <meta name="description" content={tdk.description} />
+          <meta name="keywords" content={tdk.keywords} />
+        </Helmet>
+        <h1 onClick={this.handlerClick}>{this.state.data}</h1>
+      </div>
+    );
   }
 }

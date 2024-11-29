@@ -1,6 +1,7 @@
 // ./webpack/webpack.dev.config.js
 
 const path = require('path');
+const webpack = require("webpack");
 
 //定一个通用的路径转换方法
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);

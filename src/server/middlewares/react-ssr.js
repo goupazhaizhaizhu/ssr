@@ -10,6 +10,7 @@ import { StaticRouter } from "react-router";
 import routeList from "../../client/router/route-config";
 import App from "../../client/router/index.js";
 import { matchRoute } from "../../share/matchRoute.js";
+import { Helmet } from "react-helmet";
 
 export default async(req, res) => {
   //获得请求的 path
@@ -33,11 +34,15 @@ export default async(req, res) => {
             <App routeList={routeList}></App>
         </StaticRouter>
     );
+  
+  const helmet = Helmet.renderStatic();
+
   res.end(`<!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>传统 ssr </title>
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
     </head>
     <body>
         <div id="root">
