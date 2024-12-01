@@ -7,8 +7,8 @@
     "webpack-client": "webpack --config ./webpack/webpack.dev.config.js",
     "babel-node": "babel  src -d dist/src",
     "start": "npm run webpack-client && npm run babel-node && node ./app.js",
-    "build-dev": "cross-env NODE_ENV=development webpack --config ./webpack/webpack.dev.config.js --watch & babel --watch src -d dist/src",
-    "dev": "cross-env NODE_ENV=production nodemon ./app.js"
+    "build-dev": "webpack --config ./webpack/webpack.dev.config.js --watch & babel --watch src -d dist/src",
+    "dev": "nodemon ./app.js"
   },
   "repository": {
     "type": "git",
