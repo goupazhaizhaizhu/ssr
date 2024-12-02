@@ -7,9 +7,9 @@ import React from 'react';
 //引入index 组件
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from "react-router";
-import routeList from "../../client/router/route-config";
-import App from "../../client/router/index.js";
-import { matchRoute } from "../../share/matchRoute.js";
+import routeList from "../client/router/route-config.js";
+import App from "../client/router/index.js";
+import { matchRoute } from "../share/matchRoute.js";
 import { Helmet } from "react-helmet";
 
 export default async(req, res) => {

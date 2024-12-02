@@ -1,14 +1,14 @@
 const express = require('express');
 const path = require('path');
-const reactSsr  = require('./dist/src/server/middlewares/react-ssr').default;
+const reactSsr = require('./src/server/index.js').default;
 
 const app = express();
 
 // 静态文件处理
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 // 将打包好的静态文件也放到静态文件服务下
 app.use(express.static(
-    path.join(__dirname, './dist/static')
+    path.join(__dirname, 'static')
 ));
 
 app.get("/favicon.ico", (req, res) => {
