@@ -1,4 +1,3 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require("webpack");
 
@@ -26,7 +25,7 @@ module.exports = {
         test: /\.css?$/,
         use: [
           // MiniCssExtractPlugin.loader,
-          // "isomorphic-style-loader",
+          "isomorphic-style-loader",
           {
             loader: "css-loader",
             options: {
@@ -40,9 +39,6 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __SERVER__: false,
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css", //设置名称
-    }),
+    })
   ],
 };

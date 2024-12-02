@@ -8,6 +8,9 @@ module.exports = {
   mode: "development",
   target: "node",
   externals: [nodeExternals()],
+  node: {
+        __dirname: false
+  },
   entry: resolvePath("../app.js"), //入口文件
   output: {
     filename: "app.js", //设置打包后的文件名

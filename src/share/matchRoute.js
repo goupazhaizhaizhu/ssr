@@ -4,7 +4,7 @@ export const matchRoute = (path, routeList) => {
   let targetRoute, targetMatch;
 
   for (var item of routeList) {
-    targetMatch = matchPath(item, path);
+    targetMatch = matchPath(path, item);
     if (targetMatch) {
       targetRoute = item; //查找到第一个路由后停止查找
       break;

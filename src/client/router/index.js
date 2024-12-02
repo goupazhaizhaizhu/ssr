@@ -3,7 +3,7 @@
 
 import Layout from "./layout";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 //服务端也会用到所以通过参数的方式将配置传递进来
 export default class App extends React.Component {
@@ -14,21 +14,23 @@ export default class App extends React.Component {
     const { routeList } = this.props;
     return (
       <Layout>
-        <Routes>
+        <Switch>
           {routeList.map((item) => {
-            return (
+            return item.initialData ? (
               <Route
                 key={item.path}
+                exact={item.exact}
                 path={item.path}
-                element={
-                  <item.component
-                    initialData={item.initialData}
-                  ></item.component>
-                }
+                render={(props) => {
+                  props.initialData = item.initialData;
+                  return <item.component {...props} />;
+                }}
               ></Route>
+            ) : (
+              <Route key={item.path} {...item}></Route>
             );
           })}
-        </Routes>
+        </Switch>
       </Layout>
     );
   }

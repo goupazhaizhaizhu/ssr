@@ -26,6 +26,8 @@
 
 ### node端如何使用es module
 
+node本来只能编译commonjs代码，需要使用babel-loader的@babel/preset-env插件将其改为es module
+
 ### hydrate和renderToString
 
 ### Routes组件、StaticRouter组件和BrowserRouter组件作用

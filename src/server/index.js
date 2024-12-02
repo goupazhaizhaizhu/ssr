@@ -29,11 +29,8 @@ export default async (req, res) => {
     
   targetRoute.initialData = fetchResult;
   const css = new Set();
-  const insertCss = (...styles) => styles.forEach((style) => {
-    console.log(style._getCss(), style._getContent(), style._insertCss(), "style");
-    css.add(style._getCss())
-  });
-    console.log(css,")))",[...css].join(""), "===css===")
+  const insertCss = (...styles) =>
+    styles.forEach((style) => css.add(style._getCss()));
 
   const html = renderToString(
     <StyleContext.Provider value={{ insertCss }}>
