@@ -8,6 +8,12 @@ import { BrowserRouter} from 'react-router-dom';
 import App from '../router/index.js';
 import routeList from '../router/route-config';//路由配置
 import { matchRoute } from "../../share/matchRoute.js"; 
+import StyleContext from "isomorphic-style-loader/StyleContext";
+
+const insertCss = (...styles) => {
+    const removeCss = styles.map(style => style._insertCss())
+    return () => removeCss.forEach(dispose => dispose())
+}
 
 let initialData = JSON.parse(document.getElementById("ssrTextInitData").value);
 
@@ -18,7 +24,10 @@ let { targetRoute } = matchRoute(document.location.pathname, routeList);
 targetRoute.initialData = initialData;
 //渲染入口
 ReactDom.hydrate(
-   <BrowserRouter>
-        <App routeList={routeList} />
-   </BrowserRouter>//改成路由组件
-, document.getElementById('root'))
+  <StyleContext.Provider value={{ insertCss }}>
+    <BrowserRouter>
+      <App routeList={routeList} />
+    </BrowserRouter>
+  </StyleContext.Provider>,
+  document.getElementById("root")
+);

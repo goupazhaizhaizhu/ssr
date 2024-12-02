@@ -1,7 +1,4 @@
-// ./webpack/webpack.dev.config.js
-
 const path = require("path");
-const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 
 //定一个通用的路径转换方法
@@ -30,7 +27,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              modules: true,
+              modules: true
             },
           },
         ],

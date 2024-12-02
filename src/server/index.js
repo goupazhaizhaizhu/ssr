@@ -11,29 +11,37 @@ import routeList from "../client/router/route-config.js";
 import App from "../client/router/index.js";
 import { matchRoute } from "../share/matchRoute.js";
 import { Helmet } from "react-helmet";
+import StyleContext from 'isomorphic-style-loader/StyleContext';
 
-export default async(req, res) => {
+export default async (req, res) => {
   //获得请求的 path
   const path = req.path;
 
   //查找到的目标路由对象
   let { targetRoute } = matchRoute(path, routeList);
 
-    //数据预取 -> fetchResult
+  //数据预取 -> fetchResult
   let fetchDataFn = targetRoute.component.getInitialProps;
   let fetchResult = {};
   if (fetchDataFn) {
-      fetchResult = await fetchDataFn();
+    fetchResult = await fetchDataFn();
   }
     
-    targetRoute.initialData = fetchResult;
+  targetRoute.initialData = fetchResult;
+  const css = new Set();
+  const insertCss = (...styles) => styles.forEach((style) => {
+    console.log(style._getCss(), style._getContent(), style._insertCss(), "style");
+    css.add(style._getCss())
+  });
+    console.log(css,")))",[...css].join(""), "===css===")
 
-
-    const html = renderToString(
-        <StaticRouter location={path}>
-            <App routeList={routeList}></App>
-        </StaticRouter>
-    );
+  const html = renderToString(
+    <StyleContext.Provider value={{ insertCss }}>
+      <StaticRouter location={path}>
+        <App routeList={routeList}></App>
+      </StaticRouter>
+    </StyleContext.Provider>
+  );
   
   const helmet = Helmet.renderStatic();
 
@@ -43,6 +51,7 @@ export default async(req, res) => {
         <meta charset="UTF-8">
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
+        <style>${[...css].join("")}</style>
     </head>
     <body>
         <div id="root">
