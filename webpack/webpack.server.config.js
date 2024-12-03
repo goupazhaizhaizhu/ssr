@@ -9,7 +9,10 @@ module.exports = {
   target: "node",
   externals: [nodeExternals()],
   node: {
-        __dirname: false
+    __dirname: false,
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"], //表示这几个文件的后缀名可以省略不写
   },
   entry: resolvePath("../app.js"), //入口文件
   output: {
@@ -19,7 +22,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(j|t)sx?$/,
         loader: "babel-loader",
         exclude: /node_modules/,
       },
@@ -30,7 +33,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              modules: true
+              modules: true,
             },
           },
         ],

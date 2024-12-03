@@ -14,10 +14,13 @@ module.exports = {
     filename: "[name].js", //设置打包后的文件名
     path: resolvePath("../dist/static"), //设置构建结果的输出目录
   },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"], //表示这几个文件的后缀名可以省略不写
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(j|t)sx?$/,
         loader: "babel-loader",
         exclude: /node_modules/,
       },
@@ -29,7 +32,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              modules: true
+              modules: true,
             },
           },
         ],
@@ -39,6 +42,6 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __SERVER__: false,
-    })
+    }),
   ],
 };

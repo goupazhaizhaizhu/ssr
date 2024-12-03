@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import withStyles from "isomorphic-style-loader/withStyles";
 import s from "./layout.css";
+
 function Layout(props) {
     return (
       <div className={s.page}>
