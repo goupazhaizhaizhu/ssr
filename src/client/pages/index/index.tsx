@@ -3,13 +3,19 @@
 
 import React from 'react';
 import { Helmet } from "react-helmet";
+import Counter from './count';
+import Counter2 from './count2';
 
 //组件
-export default class Index extends React.Component {
+export default class Index extends React.PureComponent {
+  state: {
+    data: any;
+    fetchData: any;
+    tdk?: {};
+  };
   constructor(props) {
     super(props);
-    const initialData = props.staticContext || {};
-    this.state = initialData;
+    this.state = props.initialData || {};
   }
 
   static TDK = {
@@ -37,23 +43,25 @@ export default class Index extends React.Component {
     return res;
   }
 
-  componentDidMount() {
-    if (!this.state.fetchData) {
-      Index.getInitialProps().then((res) => {
-        this.setState({
-          data: res.data || "暂无数据",
-          tdk: Index.TDK,
-        });
-      });
-    }
-  }
+  // componentDidMount() {}
 
   handlerClick() {
     alert("一起来玩 react ssr 呀。");
   }
 
+  componentDidMount(): void {
+    if (!this.state.fetchData && Object.keys(this.state).length === 0) {
+      Index.getInitialProps().then((res: any) => {
+        this.setState({
+          data: res.data || "暂无数据",
+          tdk: Index.TDK
+        });
+      });
+    }
+  }
+
   render() {
-    const { tdk = {} } = this.state;
+    const { tdk = {} as any } = this.state;
     return (
       <div>
         <Helmet>
@@ -62,6 +70,8 @@ export default class Index extends React.Component {
           <meta name="keywords" content={tdk.keywords} />
         </Helmet>
         <h1 onClick={this.handlerClick}>{this.state.data}</h1>
+        <Counter />
+        <Counter2 />
       </div>
     );
   }
